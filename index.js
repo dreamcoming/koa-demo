@@ -24,8 +24,15 @@ app.use(koaBody({
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.listen(port);
 
+router.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  console.log(`${new Date()} : ${ctx.method} ${ctx.url} - ${ms}`);
+});
+
+app.listen(port);
 
 router.get('/v1/a', async (ctx) => {
   ctx.body = 'hello1';
