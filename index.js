@@ -47,7 +47,7 @@ router.get('/v1/a', async (ctx) => {
 });
 
 router.all('*', async (ctx) => {
-  ctx.body = 'hhheel';
+  ctx.body = 'hjgJKLKVvhgvuvJHBVgyljkb';
 });
 // 欢迎信息
 console.log(`✈️  服务端已启动，监听端口${port}`);
