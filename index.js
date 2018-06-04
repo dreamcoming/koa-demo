@@ -7,7 +7,13 @@ const Router = require('koa-router');
 const app = new Koa();
 app.proxy = true;
 
-const port = 3000;
+
+const wxInfo = {
+  AppID: 'wx30276bec26f80d44',
+  AppSecret: '993761dec3dc2654c25e3c9cd72d63be'
+};
+
+const port = 80;
 const router = new Router();
 
 // 配置koa
@@ -30,14 +36,18 @@ router.use(async (ctx, next) => {
   await next();
   const ms = Date.now() - start;
   console.log(`${new Date()} : ${ctx.method} ${ctx.url} - ${ms}`);
+  console.log(`params: ${JSON.stringify(Object.assign({}, ctx.query))}`);
 });
+
 
 app.listen(port);
 
 router.get('/v1/a', async (ctx) => {
-  ctx.body = 'hello1';
   return 'hello';
 });
 
+router.all('*', async (ctx) => {
+  ctx.body = 'hhheel';
+});
 // 欢迎信息
 console.log(`✈️  服务端已启动，监听端口${port}`);
