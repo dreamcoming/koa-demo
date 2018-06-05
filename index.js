@@ -39,15 +39,14 @@ router.use(async (ctx, next) => {
   console.log(`params: ${JSON.stringify(Object.assign({}, ctx.query))}`);
 });
 
-
 app.listen(port);
 
-router.get('/v1/a', async (ctx) => {
-  return 'hello';
-});
+// router.get('/v1/a', async (ctx) => {
+//   return 'hello';
+// });
 
 router.all('*', async (ctx) => {
-  ctx.body = 'hjgJKLKVvhgvuvJHBVgyljkb';
+  ctx.body = ctx.query.echostr || 'hjgJKLKVvhgvuvJHBVgyljkb';
 });
 // 欢迎信息
 console.log(`✈️  服务端已启动，监听端口${port}`);
